@@ -3,11 +3,6 @@ import requests
 import yfinance as yf
 
 
-def get_stock_price(ticker):
-    stock_data = yf.download(tickers=ticker, interval="1m", period="1d")
-    return stock_data["Close"].iloc[-1].to_dict()
-
-
 def send_notice(message):
     headers = {
         "content-type": "application/x-www-form-urlencoded",
@@ -19,11 +14,13 @@ def send_notice(message):
     )
 
 
-tickers = ["AAPL", "MSFT", "GOOG", "AMZN", "NVDA", "META"]
 previous_price = {}
-
 while True:
-    current_price = get_stock_price(tickers)
+    stock_data = yf.download(
+        tickers=["AAPL", "GOOG", "NVDA"], interval="1m", period="1d"
+    )
+    stock_price = stock_data["Close"].iloc[-1].to_dict()
+    current_price = stock_price
 
     for ticker, price in current_price.items():
         print(f"{ticker}:")
