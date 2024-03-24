@@ -52,8 +52,8 @@ class Portfolio:
 
 
 def get_stock_price(tickers):
-    stock_data = yf.download(tickers=tickers, interval="1m", period="1d")
-    return stock_data["Close"].iloc[-1]
+    stock_data = yf.download(tickers=tickers, period="1d", interval="1m")
+    return stock_data["Adj Close"].iloc[-1]
 
 
 def send_notice(message):
