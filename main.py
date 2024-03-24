@@ -25,7 +25,7 @@ class Portfolio:
                 self.stocks[ticker] = {"qty": quantity, "avg": price}
             self.cash -= total_cost
         else:
-            print(f"Insufficient funds to buy.")
+            print("Insufficient funds to buy.")
 
     def sell_stock(self, ticker, price, quantity=10):
         if ticker in self.stocks:
@@ -80,11 +80,11 @@ def trading_simulation(tickers, threshold=0.10):
                 symbol = "+" if change >= 0 else "-"
                 if abs(change) >= threshold:
                     if change > 0:
-                        print(f"*** Buy Signal ***")
+                        print("*** Buy Signal ***")
                         print(f" - Difference: {symbol}{abs(change):,.2f}")
                         portfolio.buy_stock(ticker, price)
                     else:
-                        print(f"*** Sell Signal ***")
+                        print("*** Sell Signal ***")
                         print(f" - Difference: {symbol}{abs(change):,.2f}")
                         portfolio.sell_stock(ticker, price)
                 else:
